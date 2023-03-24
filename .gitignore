@@ -1,0 +1,7 @@
+env/
+__pycache__/
+conversationbot
+ai_logic
+tg_TOKEN.txt
+gtp_TOKEN.txt
+database.db

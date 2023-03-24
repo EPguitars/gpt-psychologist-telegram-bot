@@ -1,0 +1,5 @@
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY,
+    data TEXT NOT NULL
+);
+

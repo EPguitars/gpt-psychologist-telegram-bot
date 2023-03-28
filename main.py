@@ -24,7 +24,7 @@ from telegram.ext import (
     CallbackQueryHandler,
     ConversationHandler)
 
-import gtp_logic
+import gpt_logic
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -83,12 +83,12 @@ async def get_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     question = update.message.text
     user_id = update.message.from_user.id
     data = current_data(user_id)
-    data, answer = gtp_logic.get_result(data, question)
-    data_size = gtp_logic.num_tokens_from_messages(data)
+    data, answer = gpt_logic.get_result(data, question)
+    data_size = gpt_logic.num_tokens_from_messages(data)
 
     while data_size > 3596:
         data.pop(3)
-        data_size = gtp_logic.num_tokens_from_messages(data)
+        data_size = gpt_logic.num_tokens_from_messages(data)
 
     update_db(user_id, data)
     await update.message.reply_text(answer)

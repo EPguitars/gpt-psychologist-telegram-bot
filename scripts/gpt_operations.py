@@ -5,14 +5,17 @@ This is a module with chatGPT logic for ai-psychologist bot
 Coded by Eugene Poluyakhtov
 Idea by Ilya Lisov and Eugene Poluyakhtov
 """
+import os
+
 import openai
 import tiktoken
+from dotenv import load_dotenv
+
+load_dotenv()
+openai.api_key = os.getenv("OPEN_AI_TOKEN")
 
 
-openai.api_key = open("gtp_TOKEN.txt", 'r', encoding="utf-8").read()
-
-
-def get_result(data, prompt):
+def get_result(data: list, prompt):
     """This is a function for making a request to GPT API"""
     data.append({"role": "user", "content": prompt})
 
